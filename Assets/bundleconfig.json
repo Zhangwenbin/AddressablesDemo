@@ -1,0 +1,7 @@
+{
+    "groups":[
+        {"path":"Assets/Prefabs","packMode":1,"name":"prefabs","locate":"host"},
+        {"path":"Assets/luatxt","packMode":0,"name":"luatxt","locate":"host"},
+        {"path":"Assets/Scenes","packMode":2,"name":"scenes","locate":"host"}
+    ]
+}
