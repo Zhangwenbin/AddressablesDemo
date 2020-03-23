@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: prefabs
   m_Data:
     m_SerializedData: []
-  m_GUID: 68ce15746ffc0314186b8e0fcef7e31f
+  m_GUID: 21d3d74005f1d984994efd731c94f37d
   m_SerializeEntries:
   - m_GUID: 049bc08a6cb2819488d3915d7690d120
     m_Address: Prefabs/Sphere.prefab
@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: f46cd564f01a77b4e914b00bc92a1e62, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 27c3b24d8c2473e408613c497b25ebb4, type: 2}
-    - {fileID: 11400000, guid: c5095b24e3465c3419cff0c53d68b99e, type: 2}
+    - {fileID: 11400000, guid: 6848e88d06429e04fbe68617f1fc65bd, type: 2}
+    - {fileID: 11400000, guid: 18bc7d95c42316a4faea88e5b937342e, type: 2}
