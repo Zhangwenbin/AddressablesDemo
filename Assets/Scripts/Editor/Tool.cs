@@ -12,6 +12,7 @@ using UnityEditor.AddressableAssets.Build;
 using UnityEngine.AddressableAssets;
 using UnityEditor.AddressableAssets;
 using System.Linq;
+using UnityEngine.SocialPlatforms;
 
 public class Tool 
 {
@@ -169,7 +170,11 @@ public class Tool
     {
         AddressableAssetSettings.CleanPlayerContent(null);
         BuildCache.PurgeCache(false);
-        Directory.Delete(Settings.RemoteCatalogBuildPath.GetValue(Settings),true);
+        string cachePath = Settings.RemoteCatalogBuildPath.GetValue(Settings);
+        if (Directory.Exists(cachePath)) {
+            Directory.Delete(Settings.RemoteCatalogBuildPath.GetValue(Settings), true);
+        }
+       
     }
 
     static void Build()
