@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: luatxt
   m_Data:
     m_SerializedData: []
-  m_GUID: 06bb9ea623ecfdd4e962b146b595e74f
+  m_GUID: 83bf3cc2e6a9efd479e233d227a3e261
   m_SerializeEntries:
   - m_GUID: 3e7e437c64e8a7b419918b6ed8c0a54b
     m_Address: luatxt/ls.txt
@@ -39,5 +39,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: f46cd564f01a77b4e914b00bc92a1e62, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: f5cd5bfadfb6fbf4396777723fce4621, type: 2}
-    - {fileID: 11400000, guid: 09e936d3df3530e4ab2c9dcf548de701, type: 2}
+    - {fileID: 11400000, guid: 187958204737a8b42b8d439b7d6b5011, type: 2}
+    - {fileID: 11400000, guid: 8dc6a283ffd77f7458012f2828c5d1d5, type: 2}

@@ -11,6 +11,7 @@ using UnityEditor.AddressableAssets.HostingServices;
 using UnityEditor.AddressableAssets.Build;
 using UnityEngine.AddressableAssets;
 using UnityEditor.AddressableAssets;
+using System.Linq;
 
 public class Tool 
 {
@@ -106,6 +107,8 @@ public class Tool
     {
         var folders = new string[] { item.path };
         var assets = AssetDatabase.FindAssets("", folders);
+
+       
         Debug.Log("assets.Length " + assets.Length);
         var settings = Settings;
         var group = settings.FindGroup(item.name);

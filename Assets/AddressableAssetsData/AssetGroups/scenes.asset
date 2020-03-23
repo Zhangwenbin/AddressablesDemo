@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: scenes
   m_Data:
     m_SerializedData: []
-  m_GUID: ffff382f3f7f69642916bdc30da69e62
+  m_GUID: 7a0e782c084a372479dc26af2bc0e46c
   m_SerializeEntries:
   - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
     m_Address: Scenes/scene0.unity
@@ -33,5 +33,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: f46cd564f01a77b4e914b00bc92a1e62, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: eb9401d649355784ea2c7e6ea52eff02, type: 2}
-    - {fileID: 11400000, guid: 5f6094ded8aa0a54aa62eac833f2f132, type: 2}
+    - {fileID: 11400000, guid: e91ff0a92cfd53e4d94a66063b059d39, type: 2}
+    - {fileID: 11400000, guid: 77c86b961b107e747b10416811455eff, type: 2}

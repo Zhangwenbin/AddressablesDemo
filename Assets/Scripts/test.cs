@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.AddressableAssets.ResourceLocators;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.Video;
 
 public class test : MonoBehaviour
@@ -19,8 +20,7 @@ public class test : MonoBehaviour
         status = "begin";
         Addressables.InitializeAsync().Completed+=initialCompleted;
 
-        
-        // Addressables.LoadAssetAsync<VideoClip>("movie").Completed+=onStart;
+            
     }
 
     private void initialCompleted(AsyncOperationHandle<IResourceLocator> obj)
@@ -80,54 +80,23 @@ public class test : MonoBehaviour
        
     }
 
-    private void checksizeComplete(AsyncOperationHandle<long> obj)
-    {
-        if (obj.Status == AsyncOperationStatus.Failed)
-        {
-            return;
-        }
-        size += obj.Result/1024;
 
-    }
 
-    private void OnGUI()
-    {
-        GUILayout.Label("count: " + count);
-        GUILayout.Label("size: " + size + "kb");
-        GUILayout.Label("status:" + status);
+    
 
-        GUILayout.Label("checks:" + checks);
-    }
-
+    public string testKey;
     private void Update()
     {
      
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Addressables.InstantiateAsync("Prefabs/Cube.prefab");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Addressables.InstantiateAsync("Prefabs/Horse.prefab");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Addressables.InstantiateAsync("Prefabs/Sphere.prefab");
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            Addressables.LoadSceneAsync("Scenes/scene1.unity");
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Addressables.LoadSceneAsync("Scenes/scene0.unity");
+
+            Addressables.InstantiateAsync(testKey);
         }
 
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            StartChcek();
-        }
+
+        
     }
 
-  
+
 }
