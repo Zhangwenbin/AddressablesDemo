@@ -15,23 +15,11 @@ MonoBehaviour:
   m_GroupName: scenes
   m_Data:
     m_SerializedData: []
-  m_GUID: 60b84b46325fe3c4f8163c4627933c85
-  m_SerializeEntries:
-  - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
-    m_Address: Scenes/scene0.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_mainAssetType: UnityEditor.SceneAsset, UnityEditor, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  - m_GUID: e8e7628014c2e184f84d8fefcd926f17
-    m_Address: Scenes/scene1.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_mainAssetType: UnityEditor.SceneAsset, UnityEditor, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+  m_GUID: ed32772c5ce214e40b910ac871feda79
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f46cd564f01a77b4e914b00bc92a1e62, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 6fa7e59b9cca4b945b09b2a872c05bad, type: 2}
-    - {fileID: 11400000, guid: 058f300be443c5f4eab3ecf949b3c42f, type: 2}
+    - {fileID: 11400000, guid: ae64fdcbab1ce124a9069b9e03f449a1, type: 2}
+    - {fileID: 11400000, guid: 544e04148a96cce49b03e6070ec44cd0, type: 2}

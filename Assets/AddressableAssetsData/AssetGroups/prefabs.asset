@@ -15,35 +15,27 @@ MonoBehaviour:
   m_GroupName: prefabs
   m_Data:
     m_SerializedData: []
-  m_GUID: 21d3d74005f1d984994efd731c94f37d
+  m_GUID: 1882a52d1d6d65d4fbc9f5e40895d5b4
   m_SerializeEntries:
-  - m_GUID: 049bc08a6cb2819488d3915d7690d120
-    m_Address: Prefabs/Sphere.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  - m_GUID: 50eede1f683575641af2043b0e802c3b
-    m_Address: Prefabs/Horse.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  - m_GUID: 574fa4fbb11c23c4e9d76ce985590b3d
-    m_Address: Prefabs/Cube.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   - m_GUID: fc14648266c7b154fa833256d91681e8
     m_Address: Prefabs/Capsule.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  - m_GUID: 574fa4fbb11c23c4e9d76ce985590b3d
+    m_Address: Prefabs/Cube.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50eede1f683575641af2043b0e802c3b
+    m_Address: Prefabs/Horse.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 049bc08a6cb2819488d3915d7690d120
+    m_Address: Prefabs/Sphere.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f46cd564f01a77b4e914b00bc92a1e62, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 6848e88d06429e04fbe68617f1fc65bd, type: 2}
-    - {fileID: 11400000, guid: 18bc7d95c42316a4faea88e5b937342e, type: 2}
+    - {fileID: 11400000, guid: 1ec8b31f9d7cd1c43a3237510858d762, type: 2}
+    - {fileID: 11400000, guid: 0bcd3fc9695aead4cb603bacc0589424, type: 2}

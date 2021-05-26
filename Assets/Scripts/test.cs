@@ -15,43 +15,47 @@ public class test : MonoBehaviour
 
     public string status;
     public string checks;
-    private void StartChcek()
+    private void Start()
     {
+        
         status = "begin";
-        Addressables.InitializeAsync().Completed+=initialCompleted;
+        Addressables.InitializeAsync().Completed += initialCompleted;
 
-            
+
     }
 
     private void initialCompleted(AsyncOperationHandle<IResourceLocator> obj)
     {
+        status = "initialCompleted";
         Addressables.CheckForCatalogUpdates(true).Completed += checkComplete;
-       
+
     }
 
     private void checkComplete(AsyncOperationHandle<List<string>> obj)
     {
+        status = "checkComplete";
+
         Debug.Log(obj.Status);
-        if (obj.Status==AsyncOperationStatus.Failed)
+        if (obj.Status == AsyncOperationStatus.Failed)
         {
             return;
         }
         Debug.Log(obj.Result.Count);
         count = obj.Result.Count;
         status = "checkfinish";
-        if (count==0)
-        {         
+        if (count == 0)
+        {
             return;
         }
         checks = "";
         for (int i = 0; i < obj.Result.Count; i++)
         {
             checks += obj.Result[i];
-            
+
         }
         Debug.Log(checks);
-       
-      
+
+
         Addressables.UpdateCatalogs(obj.Result).Completed += updatecomplete;
     }
 
@@ -59,6 +63,7 @@ public class test : MonoBehaviour
 
     private void updatecomplete(AsyncOperationHandle<List<IResourceLocator>> obj)
     {
+        status = "updatecomplete";
         Debug.Log(obj.Status);
         if (obj.Status == AsyncOperationStatus.Failed)
         {
@@ -70,33 +75,52 @@ public class test : MonoBehaviour
         foreach (var item in Addressables.ResourceLocators)
         {
             Debug.Log(item.LocatorId);
-            foreach (var key  in item.Keys)
+            foreach (var key in item.Keys)
             {
                 Debug.Log(key);
-              
+
             }
-           
+
         }
-       
+
     }
 
 
 
-    
-
-    public string testKey;
     private void Update()
     {
-     
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-
-            Addressables.InstantiateAsync(testKey);
-        }
-
-
-        
+        Debug.Log(status);
     }
 
+    public string testKey;
+    public void TestSync()
+    {
+        status = "load";
+        LoadAsset(testKey);
+    }
+
+    public void TestASync()
+    {
+        status = "load";
+        LoadAssetAsync(testKey);
+    }
+
+    public GameObject LoadAsset(string key)
+    {
+        var op= Addressables.LoadAssetAsync<GameObject>(key);
+        var go= op.WaitForCompletion();
+        Instantiate(go);
+        return go;
+    }
+
+    public void LoadAssetAsync(string key)
+    {
+       Addressables.LoadAssetAsync<GameObject>(key).Completed+=(res)=>{
+
+           Instantiate(res.Result);
+       };
+
+
+    }
 
 }
