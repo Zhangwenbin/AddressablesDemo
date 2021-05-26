@@ -224,7 +224,7 @@ public class Tool
 
     static void PrepareContentUpdate()
     {
-        var tempPath = AddressableAssetSettingsDefaultObject.Settings.ConfigFolder+"/" + PlatformMappingService.GetPlatform() + "/addressables_content_state.bin";
+        var tempPath = AddressableAssetSettingsDefaultObject.Settings.ConfigFolder+"/" + PlatformMappingService.GetPlatformPathSubFolder() + "/addressables_content_state.bin";
         var modifiedEntries = ContentUpdateScript.GatherModifiedEntries(Settings, tempPath);
         Debug.Log(tempPath);
         ContentUpdateScript.CreateContentUpdateGroup(Settings, modifiedEntries, ContentUpdateGroup);

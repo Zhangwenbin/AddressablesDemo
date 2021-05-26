@@ -55,7 +55,8 @@ public class test : MonoBehaviour
         }
         Debug.Log(checks);
 
-
+        var size= Addressables.GetDownloadSizeAsync(obj.Result);
+        Debug.Log(size);
         Addressables.UpdateCatalogs(obj.Result).Completed += updatecomplete;
     }
 
