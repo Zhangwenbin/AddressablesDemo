@@ -15,11 +15,27 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: b3b3ac07b17e81048b1c73ade4a048ad
-  m_SerializeEntries: []
+  m_GUID: 01ab4c93913df434098aa23bfc3c9fe7
+  m_SerializeEntries:
+  - m_GUID: 5a009c7448725ec4a9c0adc28187262c
+    m_Address: Assets/Arts
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4711a13784e1d26429e7a11e65dad2f6
+    m_Address: Assets/luatxt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cf218795440eb234abd7538ca33555ea
+    m_Address: Assets/Arts/Horse/Model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 24a4eb76b08ffc943b95606e3d99a5b0
+    m_Address: Assets/Arts/Horse/Animation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f46cd564f01a77b4e914b00bc92a1e62, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: b1e1ed1fe70408d4890eef4eab729cbf, type: 2}
-    - {fileID: 11400000, guid: ea2207840f8b81849a23511b05559f6c, type: 2}
+    - {fileID: 11400000, guid: 1e077f46b14a00c48b37c91dfac2e741, type: 2}
+    - {fileID: 11400000, guid: 6366b1e12bf2df841afac153a780684f, type: 2}

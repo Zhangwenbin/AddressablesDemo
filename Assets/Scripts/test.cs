@@ -10,52 +10,38 @@ using UnityEngine.Video;
 
 public class test : MonoBehaviour
 {
-    public int count;
-    public float size;
-
-    public string status;
-    public string checks;
+    private static int index;
     private void Start()
     {
         
-        status = "begin";
         Addressables.InitializeAsync().Completed += initialCompleted;
-
-
     }
 
     private void initialCompleted(AsyncOperationHandle<IResourceLocator> obj)
     {
-        status = "initialCompleted";
-        Addressables.CheckForCatalogUpdates(true).Completed += checkComplete;
 
+        Addressables.CheckForCatalogUpdates(true).Completed += checkComplete;
     }
 
     private void checkComplete(AsyncOperationHandle<List<string>> obj)
     {
-        status = "checkComplete";
-
         Debug.Log(obj.Status);
         if (obj.Status == AsyncOperationStatus.Failed)
         {
             return;
         }
         Debug.Log(obj.Result.Count);
-        count = obj.Result.Count;
-        status = "checkfinish";
-        if (count == 0)
+        if (obj.Result.Count == 0)
         {
             return;
         }
-        checks = "";
-        for (int i = 0; i < obj.Result.Count; i++)
-        {
-            checks += obj.Result[i];
-
-        }
-        Debug.Log(checks);
-
-        var size= Addressables.GetDownloadSizeAsync(obj.Result);
+        long size = 0;
+        //for (int i = 0; i < obj.Result.Count; i++)
+        //{
+        //    Addressables.GetDownloadSizeAsync(obj.Result[i]).Completed+=(res)=> {
+        //        size += res.Result;
+        //    };
+        //}
         Debug.Log(size);
         Addressables.UpdateCatalogs(obj.Result).Completed += updatecomplete;
     }
@@ -64,64 +50,60 @@ public class test : MonoBehaviour
 
     private void updatecomplete(AsyncOperationHandle<List<IResourceLocator>> obj)
     {
-        status = "updatecomplete";
         Debug.Log(obj.Status);
         if (obj.Status == AsyncOperationStatus.Failed)
         {
             return;
         }
-        status = "updatefinish";
-        size = 0;
-        List<string> keys = new List<string>();
-        foreach (var item in Addressables.ResourceLocators)
+        for (int i = 0; i < obj.Result.Count; i++)
         {
-            Debug.Log(item.LocatorId);
-            foreach (var key in item.Keys)
-            {
-                Debug.Log(key);
-
-            }
-
+            Debug.Log(obj.Result[i]);
         }
-
     }
 
 
 
     private void Update()
     {
-        Debug.Log(status);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            index++;
+            index %= 2;
+            AssetManager.Instance.LoadSceneAsync(string.Format("Scenes/scene{0}.unity",index),null);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            while (handles.Count>1)
+            {
+                Addressables.Release(handles[handles.Count-1]);
+                handles.RemoveAt(handles.Count - 1);
+            }
+
+        }
+
     }
 
     public string testKey;
     public void TestSync()
     {
-        status = "load";
-        LoadAsset(testKey);
+      //Instantiate( AssetManager.Instance.LoadAsset(testKey));
     }
-
+    private static List<AsyncOperationHandle> handles=new List<AsyncOperationHandle>();
     public void TestASync()
     {
-        status = "load";
-        LoadAssetAsync(testKey);
+        //AssetManager.Instance.LoadAssetAsync(testKey, (res,op) =>
+        //{
+        //    Instantiate(res);
+        //    handles.Add(op);
+        //});
+        AssetManager.Instance.LoadAssetAsync<TextAsset>(testKey, (res, op) =>
+        {
+            Debug.Log(res.text);
+            handles.Add(op);
+        });
     }
 
-    public GameObject LoadAsset(string key)
-    {
-        var op= Addressables.LoadAssetAsync<GameObject>(key);
-        var go= op.WaitForCompletion();
-        Instantiate(go);
-        return go;
-    }
 
-    public void LoadAssetAsync(string key)
-    {
-       Addressables.LoadAssetAsync<GameObject>(key).Completed+=(res)=>{
-
-           Instantiate(res.Result);
-       };
-
-
-    }
 
 }

@@ -38,6 +38,10 @@ public class Tool
 
     static readonly string ContentUpdateGroup = "contentUpdate";
 
+
+    /// <summary>
+    /// 配置bundle group
+    /// </summary>
     [MenuItem("Tool/ConfigAll")]
     static void ConfigAll()
     {
@@ -61,6 +65,9 @@ public class Tool
         }
     }
 
+    /// <summary>
+    /// 自动build
+    /// </summary>
     [MenuItem("Tool/AutoBuildAll")]
    static void AutoBuildAll()
     {
@@ -73,6 +80,10 @@ public class Tool
        
     }
 
+
+    /// <summary>
+    /// 编辑器模式
+    /// </summary>
     [MenuItem("Tool/StartEditorMode")]
     static void StartEditorMode()
     {
@@ -81,6 +92,11 @@ public class Tool
 
     }
 
+
+    /// <summary>
+    /// 加载配置
+    /// </summary>
+    /// <returns></returns>
     static GroupsConfig LoadConfigs()
     {
         var config = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/bundleconfig.json").text;

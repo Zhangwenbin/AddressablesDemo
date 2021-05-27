@@ -3,9 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 public class AssetManager 
 {
+
+    public enum ReleaseType
+    {
+        OnNewScene,
+        Manual,
+        NoneRelease
+    }
+    public static AssetManager Instance = new AssetManager();
     public bool IsInitialize;
 
     public void Initialize()
@@ -18,18 +27,50 @@ public class AssetManager
         Addressables.CheckForCatalogUpdates();
     }
 
-    public UnityEngine.Object LoadAsset(string key)
+    /// <summary>
+    /// 有可能卡死
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="callback"></param>
+    //public UnityEngine.Object LoadAsset(string key)
+    //{
+    //    var op = Addressables.LoadAssetAsync<UnityEngine.Object>(key);
+    //    var go = op.WaitForCompletion();
+    //    Addressables.Release(op);
+    //    return go;
+    //}
+
+
+    public void LoadAssetAsync(string key, Action< UnityEngine.Object, AsyncOperationHandle> callback)
     {
         var op = Addressables.LoadAssetAsync<UnityEngine.Object>(key);
-        var go = op.WaitForCompletion();
-        return go;
+            op.Completed += (res) => {
+            if (callback != null)
+            {
+                callback(res.Result,op);
+            }
+        };
     }
 
-    public void LoadAssetAsync(string key, Action<string, UnityEngine.Object> callback)
+    public void LoadAssetAsync<T>(string key, Action<T, AsyncOperationHandle> callback)
     {
-        Addressables.LoadAssetAsync<UnityEngine.Object>(key).Completed += (res) => {
+        var op = Addressables.LoadAssetAsync<T>(key);
+        op.Completed += (res) => {
+            if (callback != null)
+            {
+                callback(res.Result, op);
+            }
+        };
+    }
 
-            callback(key, res.Result);
+    public void LoadGameObjectAsync(string key, Action<GameObject, AsyncOperationHandle> callback)
+    {
+        var op = Addressables.LoadAssetAsync<GameObject>(key);
+        op.Completed += (res) => {
+            if (callback != null)
+            {
+                callback(res.Result, op);
+            }
         };
     }
 
@@ -37,7 +78,11 @@ public class AssetManager
     {
         Addressables.LoadSceneAsync(key, loadSceneMode,activateOnLoad,priority).Completed += (res) => {
 
-            callback(key);
+            if (callback!=null)
+            {
+                callback(key);
+            }
+           
         };
     }
 }

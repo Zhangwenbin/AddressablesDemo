@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: b3b3ac07b17e81048b1c73ade4a048ad
+  m_DefaultGroup: 01ab4c93913df434098aa23bfc3c9fe7
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 1
@@ -36,9 +36,6 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 75c88e7ef0680f541b114682714587ba, type: 2}
   - {fileID: 11400000, guid: 0c9f97afdec9a7240b2b2389996669f6, type: 2}
-  - {fileID: 11400000, guid: ff74c811f1938264b86852aac04c8cf7, type: 2}
-  - {fileID: 11400000, guid: 83807521425d39549ac578414a0dc027, type: 2}
-  - {fileID: 11400000, guid: ce26d4a21c4b9304f88554b98e0fa7a3, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -110,7 +107,7 @@ MonoBehaviour:
           m_Key: HostingServiceUploadSpeed
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
-          m_Data: Library/com.unity.addressables/aa/Android/Android;ServerData/Android
+          m_Data: Library/com.unity.addressables/aa/Windows/StandaloneWindows64
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean

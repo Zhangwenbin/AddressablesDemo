@@ -292,11 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748daf34c40479d47a5e19f1bb399320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 0
-  size: 0
-  status: 
-  checks: 
-  testKey: Prefabs/Capsule.prefab
+  testKey: Assets/luatxt/ls.txt
 --- !u!1 &726876402
 GameObject:
   m_ObjectHideFlags: 0
