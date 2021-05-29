@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: rd
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: rd
   m_Data:
     m_SerializedData: []
-  m_GUID: 01ab4c93913df434098aa23bfc3c9fe7
+  m_GUID: cc754da6ad17115469c450e2d845b4f6
   m_SerializeEntries:
-  - m_GUID: 3e7e437c64e8a7b419918b6ed8c0a54b
-    m_Address: Assets/luatxt/ls.txt
+  - m_GUID: 9418a8db02aba4547a93b0453adca7b2
+    m_Address: Assets/luatxt/rd.txt
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f46cd564f01a77b4e914b00bc92a1e62, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 1e077f46b14a00c48b37c91dfac2e741, type: 2}
-    - {fileID: 11400000, guid: 6366b1e12bf2df841afac153a780684f, type: 2}
+    - {fileID: 11400000, guid: 1992de10d5b7bcf4db19ba8469f868c3, type: 2}
+    - {fileID: 11400000, guid: dd8fe7b47c53d0b4fb8758313b83a86e, type: 2}

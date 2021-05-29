@@ -1,13 +1,1 @@
-﻿
-
-LUAFamilyProxy={};
-
--- function LUAFamilyProxy:startHotfix ()
---   local parent=CS.UICtrlLogin
---   xlua.p
---     end)
-
--- end
-
--- return LUAFamilyProxy:startHotfix();
-
+﻿remote dynamic version 1

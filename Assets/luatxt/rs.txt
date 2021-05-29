@@ -1,12 +1,1 @@
-﻿
-
-LUAFamilyProxy={};
-
--- function LUAFamilyProxy:startHotfix ()
---   local parent=CS.UICtrlLogin
---   xl
--- 
--- end
-
--- return LUAFamilyProxy:startHotfix();
-
+﻿remote static version 1
