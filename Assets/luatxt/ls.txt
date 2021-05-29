@@ -1,1 +1,1 @@
-﻿local static version 1
+﻿local static version 2
