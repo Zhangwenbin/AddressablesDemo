@@ -46,23 +46,23 @@ public class Tool
     static void ConfigAll()
     {
         Debug.Log("start configall");
-        var config = LoadConfigs();
+        //var config = LoadConfigs();
 
-        int index = 0;
-        while (index<Settings.groups.Count)
-        {
-            var g = Settings.groups[index];
-            if (g.ReadOnly||g.IsDefaultGroup())
-            {
-                index++;
-                continue;
-            }
-            Settings.RemoveGroup(g);
-        }
-        foreach (var group in config.groups)
-        {
-            CreateGroupAndEntry(group);
-        }
+        //int index = 0;
+        //while (index<Settings.groups.Count)
+        //{
+        //    var g = Settings.groups[index];
+        //    if (g.ReadOnly||g.IsDefaultGroup())
+        //    {
+        //        index++;
+        //        continue;
+        //    }
+        //    Settings.RemoveGroup(g);
+        //}
+        //foreach (var group in config.groups)
+        //{
+        //    CreateGroupAndEntry(group);
+        //}
     }
 
     /// <summary>
