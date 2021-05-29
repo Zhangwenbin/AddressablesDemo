@@ -252,7 +252,7 @@ public class Tool
     static void BuildExe()
     {
         AutoBuildAll();
-      var report=  BuildPipeline.BuildPlayer(EditorBuildSettings.scenes, "BuildExe/a.exe", BuildTarget.StandaloneWindows,BuildOptions.None);
+      var report=  BuildPipeline.BuildPlayer(EditorBuildSettings.scenes, "BuildExe/a.exe", BuildTarget.StandaloneWindows,BuildOptions.None|BuildOptions.Development|BuildOptions.AllowDebugging);
         var summary = report.summary;
         Debug.Log(summary.result);
     }

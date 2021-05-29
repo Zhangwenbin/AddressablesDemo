@@ -36,7 +36,6 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 75c88e7ef0680f541b114682714587ba, type: 2}
   - {fileID: 11400000, guid: 0c9f97afdec9a7240b2b2389996669f6, type: 2}
-  - {fileID: 11400000, guid: f71a8397729a9764182798f5a8601445, type: 2}
   - {fileID: 11400000, guid: 74e670a7d076181499f11f5823187376, type: 2}
   - {fileID: 11400000, guid: cf98347da78671149b6ad1965a3c89dc, type: 2}
   m_BuildSettings:
@@ -110,7 +109,7 @@ MonoBehaviour:
           m_Key: HostingServiceUploadSpeed
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
-          m_Data: Library/com.unity.addressables/aa/Windows/StandaloneWindows64;ServerData/StandaloneWindows64
+          m_Data: Library/com.unity.addressables/aa/Windows/StandaloneWindows;ServerData/StandaloneWindows
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean

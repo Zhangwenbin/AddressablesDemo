@@ -1,0 +1,7 @@
+﻿static= can not change post release
+dynamic=can change post release
+
+local static 随包一起,build进入streaming文件夹内,更新后,进入contentupdate分组,放到服务器上,准备下载
+local dynamic 随包一起,build进入streaming文件夹内,很奇怪,不能更新
+remote static  不进入包体,build后在serverdata目录内,需要放到服务器上,更新后,进入contentupdate分组,准备下载
+remote dynamic 不进入包体,build后在serverdata目录内,需要放到服务器上,更新后还在原来的分组内,准备下载

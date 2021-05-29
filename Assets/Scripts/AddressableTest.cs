@@ -10,9 +10,9 @@ using UnityEngine.Video;
 using UnityEngine.UI;
 public class AddressableTest : MonoBehaviour
 {
-    public Text statusText, updateCountText, updateSizeText, lsText,ldText, rsText, rdText;
+    public Text statusText, updateCountText, updateSizeText, lsText, rsText, rdText;
 
-    public string lsKey,ldKey, rsKey, rdKey;
+    public string lsKey, rsKey, rdKey;
 
     private void Start()
     {
@@ -37,6 +37,7 @@ public class AddressableTest : MonoBehaviour
         Debug.Log(obj.Result.Count);
         if (obj.Result.Count == 0)
         {
+            DownLoadSize();
             return;
         }
 
@@ -52,21 +53,7 @@ public class AddressableTest : MonoBehaviour
         {
             return;
         }
-
-        long size = 0;
-        var locators = Addressables.ResourceLocators;
-        foreach (var item in locators)
-        {
-            var keys = item.Keys;
-            foreach (var key in keys)
-            {
-                Addressables.GetDownloadSizeAsync(key).Completed += (res) => {
-                    size += res.Result;
-                };
-            }
-        }
-        updateSizeText.text = size + "";
-        Debug.Log(size);
+        DownLoadSize();
     }
 
     public void TestASync()
@@ -76,11 +63,7 @@ public class AddressableTest : MonoBehaviour
             Debug.Log(res.text);
             lsText.text = res.text;
         });
-        AssetManager.Instance.LoadAssetAsync<TextAsset>(ldKey, (res, op) =>
-        {
-            Debug.Log(res.text);
-            ldText.text = res.text;
-        });
+
         AssetManager.Instance.LoadAssetAsync<TextAsset>(rsKey, (res, op) =>
         {
             Debug.Log(res.text);
@@ -108,6 +91,24 @@ public class AddressableTest : MonoBehaviour
         }
     }
 
+    public void DownLoadSize()
+    {
+        long size = 0;
+        var locators = Addressables.ResourceLocators;
+        foreach (var item in locators)
+        {
+            var keys = item.Keys;
+            foreach (var key in keys)
+            {
+                Addressables.GetDownloadSizeAsync(key).Completed += (res) => {
+                    size += res.Result;
+                };
+            }
+        }
+        updateSizeText.text = size + "";
+        Debug.Log(size);
+
+    }
 
 
 }
