@@ -10,16 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: rs
+  m_Name: contentUpdate
   m_EditorClassIdentifier: 
-  m_GroupName: rs
+  m_GroupName: contentUpdate
   m_Data:
     m_SerializedData: []
-  m_GUID: b12bd143407d1154da99264edcca27b2
-  m_SerializeEntries: []
+  m_GUID: 28606d5637f5d7e4d8c2f32f9d4f7913
+  m_SerializeEntries:
+  - m_GUID: 3e7e437c64e8a7b419918b6ed8c0a54b
+    m_Address: Assets/luatxt/ls.txt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 70e8808605410e047a78bc140e1f94ec
+    m_Address: Assets/luatxt/rs.txt
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f46cd564f01a77b4e914b00bc92a1e62, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: c6becabef3ba4354c8be2699dec8e0cb, type: 2}
-    - {fileID: 11400000, guid: e21003caf3c9f6540a7dbab8d5b38bc2, type: 2}
+    - {fileID: 11400000, guid: f668b3f5bf4d6ee47a9941fbaa140386, type: 2}
+    - {fileID: 11400000, guid: 8f2eed543e8ba6248b1bce44a4f5e44a, type: 2}

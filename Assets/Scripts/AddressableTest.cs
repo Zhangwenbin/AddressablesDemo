@@ -102,10 +102,11 @@ public class AddressableTest : MonoBehaviour
             {
                 Addressables.GetDownloadSizeAsync(key).Completed += (res) => {
                     size += res.Result;
+                    updateSizeText.text = size + "";
                 };
             }
         }
-        updateSizeText.text = size + "";
+
         Debug.Log(size);
 
     }

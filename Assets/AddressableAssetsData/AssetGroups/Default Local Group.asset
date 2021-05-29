@@ -16,11 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 01ab4c93913df434098aa23bfc3c9fe7
-  m_SerializeEntries:
-  - m_GUID: 3e7e437c64e8a7b419918b6ed8c0a54b
-    m_Address: Assets/luatxt/ls.txt
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f46cd564f01a77b4e914b00bc92a1e62, type: 2}
   m_SchemaSet:

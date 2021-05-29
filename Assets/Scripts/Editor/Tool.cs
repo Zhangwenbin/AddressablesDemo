@@ -39,6 +39,18 @@ public class Tool
     static readonly string ContentUpdateGroup = "contentUpdate";
 
 
+
+    /// <summary>
+    /// 编辑器模式
+    /// </summary>
+    [MenuItem("Tool/StartEditorMode")]
+    static void StartEditorMode()
+    {
+        ConfigAll();
+        SetPlayMode(0);
+
+    }
+
     /// <summary>
     /// 配置bundle group
     /// </summary>
@@ -66,7 +78,7 @@ public class Tool
     }
 
     /// <summary>
-    /// 自动build
+    /// 自动build 资源
     /// </summary>
     [MenuItem("Tool/AutoBuildAll")]
    static void AutoBuildAll()
@@ -81,15 +93,62 @@ public class Tool
     }
 
 
-    /// <summary>
-    /// 编辑器模式
-    /// </summary>
-    [MenuItem("Tool/StartEditorMode")]
-    static void StartEditorMode()
+    [MenuItem("Tool/StartLocalService")]
+    static void StartLocalService()
+    {
+        IHostingService localSv = null;
+        foreach (var sv in Settings.HostingServicesManager.HostingServices)
+        {
+            if (sv.DescriptiveName == "localSv")
+            {
+                localSv = sv;
+                break;
+            }
+        }
+        if (localSv == null)
+        {
+            string hostingName = string.Format("{0} {1}", "localService", Settings.HostingServicesManager.NextInstanceId);
+            localSv = Settings.HostingServicesManager.AddHostingService(Settings.HostingServicesManager.RegisteredServiceTypes[0], hostingName);
+        }
+
+        localSv.DescriptiveName = "localSv";
+        localSv.StartHostingService();
+        Settings.profileSettings.SetValue(Settings.activeProfileId, AddressableAssetSettings.kRemoteLoadPath, string.Format("http://{0}:{1}", Settings.HostingServicesManager.GlobalProfileVariables["PrivateIpAddress"], localSv.ProfileVariables["HostingServicePort"]));
+    }
+
+    [MenuItem("Tool/BuildAndStartServer")]
+    static void BuildAndStartServer()
+    {
+        AutoBuildAll();
+        SetPlayMode(2);
+        StartLocalService();
+    }
+
+
+
+    [MenuItem("Tool/BuildExe")]
+    static void BuildExe()
+    {
+        AutoBuildAll();
+        var report = BuildPipeline.BuildPlayer(EditorBuildSettings.scenes, "BuildExe/a.exe", BuildTarget.StandaloneWindows, BuildOptions.None | BuildOptions.Development | BuildOptions.AllowDebugging);
+        var summary = report.summary;
+        Debug.Log(summary.result);
+    }
+
+    [MenuItem("Tool/ContenUpdate")]
+    static void ContentUpdate()
     {
         ConfigAll();
-        SetPlayMode(0);
+        PrepareContentUpdate();
 
+    }
+    static void PrepareContentUpdate()
+    {
+        var tempPath = AddressableAssetSettingsDefaultObject.Settings.ConfigFolder + "/" + PlatformMappingService.GetPlatformPathSubFolder() + "/addressables_content_state.bin";
+        var modifiedEntries = ContentUpdateScript.GatherModifiedEntries(Settings, tempPath);
+        Debug.Log(tempPath);
+        ContentUpdateScript.CreateContentUpdateGroup(Settings, modifiedEntries, ContentUpdateGroup);
+        var buildOp = ContentUpdateScript.BuildContentUpdate(Settings, tempPath);
     }
 
 
@@ -110,16 +169,29 @@ public class Tool
         Settings.activeProfileId = Settings.profileSettings.AddProfile(name,Settings.profileSettings.GetProfileId(copyName));         
     }
 
+    /// <summary>
+    /// 设置build脚本
+    /// </summary>
+    /// <param name="index"></param>
     static void SetBuildScript(int index)
     {
         Settings.ActivePlayerDataBuilderIndex = index;
     }
 
+
+    /// <summary>
+    /// 设置运行模式
+    /// </summary>
+    /// <param name="index"></param>
     static void SetPlayMode(int index)
     {
         Settings.ActivePlayModeDataBuilderIndex = index;
     }
 
+    /// <summary>
+    /// 设置资源分组示例
+    /// </summary>
+    /// <param name="item"></param>
     static void CreateGroupAndEntry(GroupConfigItem item)
     {
         var folders = new string[] { item.path };
@@ -131,14 +203,16 @@ public class Tool
         var group = settings.FindGroup(item.name);
         if (group==null)
         {
-            group= settings.CreateGroup(item.name, false, false, false,null );
+            group= settings.CreateGroup(item.name, false, false, false,null );//创建分组group
             
         }
         var schema = group.GetSchema<BundledAssetGroupSchema>();
         if (schema==null)
         {
-            schema= group.AddSchema<BundledAssetGroupSchema>();
+            schema= group.AddSchema<BundledAssetGroupSchema>();//创建加载策略组件
         }
+
+        //设置build和load路径local放在本地streaming文件夹  remote放在服务器   一般都设置为local
         if (item.locate=="host")
         {
             schema.BuildPath.SetVariableByName(settings, AddressableAssetSettings.kRemoteBuildPath);
@@ -150,7 +224,14 @@ public class Tool
             schema.LoadPath.SetVariableByName(settings, AddressableAssetSettings.kLocalLoadPath);
         }
        
+        //设置bundlemode 打包在一起还是分开
         schema.BundleMode = (BundledAssetGroupSchema.BundlePackingMode)(item.packMode);
+
+        //设置更新策略 
+        //local static 随包一起, build进入streaming文件夹内, 更新后, 进入contentupdate分组, 放到服务器上, 准备下载
+        //local dynamic 随包一起,build进入streaming文件夹内,很奇怪,不能更新
+        //remote static 不进入包体, build后在serverdata目录内, 需要放到服务器上, 更新后, 进入contentupdate分组, 准备下载
+        //remote dynamic 不进入包体,build后在serverdata目录内,需要放到服务器上,更新后还在原来的分组内,准备下载
         ContentUpdateGroupSchema contentUpdateGroupSchema= group.GetSchema<ContentUpdateGroupSchema>();
         if (contentUpdateGroupSchema==null)
         {
@@ -158,7 +239,7 @@ public class Tool
         }
         contentUpdateGroupSchema.StaticContent = true;
 
-
+        //创建资源地址
         foreach (var asset in assets)
         {          
             var path = AssetDatabase.GUIDToAssetPath(asset);
@@ -169,6 +250,11 @@ public class Tool
         }              
     }
 
+    /// <summary>
+    /// 资源命名规则
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
     static string FormatAddress(string path)
     {
         string header = "Assets/";
@@ -176,12 +262,19 @@ public class Tool
 
     }
 
+    /// <summary>
+    /// 初始化设置  禁用自动更新,构建服务器目录
+    /// </summary>
     static void InitAddressableAssetSettings()
     {
         Settings.DisableCatalogUpdateOnStartup = false;
         Settings.BuildRemoteCatalog = true;
     }
 
+
+    /// <summary>
+    /// 清理构建内容
+    /// </summary>
     static void CleanBuild()
     {
         AddressableAssetSettings.CleanPlayerContent(null);
@@ -193,68 +286,13 @@ public class Tool
        
     }
 
+    /// <summary>
+    /// 构建addresble资源
+    /// </summary>
     static void Build()
     {      
         AddressableAssetSettings.BuildPlayerContent();
     }
 
-    [MenuItem("Tool/StartLocalService")]
-    static void StartLocalService()
-    {
-        IHostingService localSv=null;
-        foreach (var sv in Settings.HostingServicesManager.HostingServices)
-        {
-            if (sv.DescriptiveName== "localSv")
-            {
-                localSv = sv;
-                break;
-            }
-        }
-        if (localSv==null)
-        {
-            string hostingName = string.Format("{0} {1}", "localService", Settings.HostingServicesManager.NextInstanceId);
-            localSv = Settings.HostingServicesManager.AddHostingService(Settings.HostingServicesManager.RegisteredServiceTypes[0], hostingName);
-        }
-
-        localSv.DescriptiveName = "localSv";
-        localSv.StartHostingService();
-        Settings.profileSettings.SetValue(Settings.activeProfileId, AddressableAssetSettings.kRemoteLoadPath,string.Format("http://{0}:{1}",Settings.HostingServicesManager.GlobalProfileVariables["PrivateIpAddress"],localSv.ProfileVariables["HostingServicePort"]));
-    }
-
-    [MenuItem("Tool/BuildAndStartServer")]
-    static void BuildAndStartServer()
-    {
-        AutoBuildAll();
-        SetPlayMode(2);
-        StartLocalService();
-    }
-
-    [MenuItem("Tool/ContenUpdate")]
-    static void ContentUpdate()
-    {
-        ConfigAll();
-        PrepareContentUpdate();
-      
-    }
-
-
-    static void PrepareContentUpdate()
-    {
-        var tempPath = AddressableAssetSettingsDefaultObject.Settings.ConfigFolder+"/" + PlatformMappingService.GetPlatformPathSubFolder() + "/addressables_content_state.bin";
-        var modifiedEntries = ContentUpdateScript.GatherModifiedEntries(Settings, tempPath);
-        Debug.Log(tempPath);
-        ContentUpdateScript.CreateContentUpdateGroup(Settings, modifiedEntries, ContentUpdateGroup);
-        var buildOp = ContentUpdateScript.BuildContentUpdate(Settings, tempPath);
-    }
-
-
-    [MenuItem("Tool/BuildExe")]
-    static void BuildExe()
-    {
-        AutoBuildAll();
-      var report=  BuildPipeline.BuildPlayer(EditorBuildSettings.scenes, "BuildExe/a.exe", BuildTarget.StandaloneWindows,BuildOptions.None|BuildOptions.Development|BuildOptions.AllowDebugging);
-        var summary = report.summary;
-        Debug.Log(summary.result);
-    }
 
 }

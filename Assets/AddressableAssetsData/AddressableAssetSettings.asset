@@ -38,6 +38,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0c9f97afdec9a7240b2b2389996669f6, type: 2}
   - {fileID: 11400000, guid: 74e670a7d076181499f11f5823187376, type: 2}
   - {fileID: 11400000, guid: cf98347da78671149b6ad1965a3c89dc, type: 2}
+  - {fileID: 11400000, guid: f46c654df0a4f084395db0fb03715bef, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -58,7 +59,7 @@ MonoBehaviour:
       - m_Id: 5426a75620ceeeb4bbeef9c0ba6874ac
         m_Value: ServerData/[BuildTarget]
       - m_Id: 4aeeed5ac4a56b24f9be08ccc64f8b76
-        m_Value: http://192.168.1.5:56865
+        m_Value: http://127.0.0.1:80/ServerData/[BuildTarget]
     m_ProfileEntryNames:
     - m_Id: 9d536386ba5f1c946a5e2fd939675cb8
       m_Name: BuildTarget
@@ -94,35 +95,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6fd1806a1b15ce947b97467fe3a3d00d, type: 2}
   m_ActiveProfileId: 504177d8c9136f94eaddf7cf233fc8a7
   m_HostingServicesManager:
-    m_HostingServiceInfos:
-    - classRef: UnityEditor.AddressableAssets.HostingServices.HttpHostingService,
-        Unity.Addressables.Editor
-      dataStore:
-        m_SerializedData:
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.Int32
-          m_Data: 56865
-          m_Key: HostingServicePort
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.Int32
-          m_Data: 0
-          m_Key: HostingServiceUploadSpeed
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.String
-          m_Data: Library/com.unity.addressables/aa/Windows/StandaloneWindows;ServerData/StandaloneWindows
-          m_Key: ContentRoot
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.Boolean
-          m_Data: True
-          m_Key: IsEnabled
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.String
-          m_Data: localSv
-          m_Key: DescriptiveName
-        - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-          m_ClassName: System.Int32
-          m_Data: 6
-          m_Key: InstanceId
+    m_HostingServiceInfos: []
     m_Settings: {fileID: 11400000}
     m_NextInstanceId: 7
     m_RegisteredServiceTypeRefs:
