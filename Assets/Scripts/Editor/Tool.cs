@@ -14,7 +14,7 @@ using UnityEditor.AddressableAssets;
 using System.Linq;
 using UnityEngine.SocialPlatforms;
 
-public class Tool 
+public class AdressbleTool 
 {
     [Serializable]
     public class GroupConfigItem

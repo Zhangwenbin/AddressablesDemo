@@ -1,0 +1,204 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Sprite Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 14554841d99b9c54cbbc65adaab82f7f, type: 3}
+    totalSpriteSurfaceArea: 1098318
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d4891010ae36a824c8c1d50d4c148767, type: 3}
+  - {fileID: 21300000, guid: 99ced8f0cd1b4f44db625084f185fe96, type: 3}
+  - {fileID: 21300000, guid: 3eccbe613d3065143a4254b5b7ac2d67, type: 3}
+  - {fileID: 21300000, guid: 2515fc81de20f62478d041cae38034bf, type: 3}
+  - {fileID: 21300000, guid: a0abbdc1ec1db204eb3f030e6038ddc4, type: 3}
+  - {fileID: 21300000, guid: aa3c701288f252a45ba37f3033e521af, type: 3}
+  - {fileID: 21300000, guid: 96036262305fd4d4aabd7431cae33719, type: 3}
+  - {fileID: 21300000, guid: bacec3722662ca447aef2b3b4a0d8ea0, type: 3}
+  - {fileID: 21300000, guid: 85c1f633f6d8d7a4889c619c7a78b0c7, type: 3}
+  - {fileID: 21300000, guid: 0015c653be06d3846a73f9a6bd6f1599, type: 3}
+  - {fileID: 21300000, guid: 6f51dd53ac908d543b8abe2846bdc32e, type: 3}
+  - {fileID: 21300000, guid: cf64ccb3081fae84e905482ae5e0b977, type: 3}
+  - {fileID: 21300000, guid: cce94184a242a914d9f653cb93117806, type: 3}
+  - {fileID: 21300000, guid: cad16284afd51dc4a86eac86f347e817, type: 3}
+  - {fileID: 21300000, guid: dc0bc7b4ba80a1242b26fbff19f82075, type: 3}
+  - {fileID: 21300000, guid: 8faf17c401b0ae54487c9926a170d58f, type: 3}
+  - {fileID: 21300000, guid: ee15f835ba7d6b04db0fda531214eab6, type: 3}
+  - {fileID: 21300000, guid: 7102304598c7d5c4ebac64ad4d55c939, type: 3}
+  - {fileID: 21300000, guid: dab4dd45b5549aa43b39569dad0da521, type: 3}
+  - {fileID: 21300000, guid: ded06f658213e2e4496814fb2066d2c0, type: 3}
+  - {fileID: 21300000, guid: 2853a9755ed23934991e80ba98d9b7bb, type: 3}
+  - {fileID: 21300000, guid: aa942c85ca9c8a2479a647748047541f, type: 3}
+  - {fileID: 21300000, guid: 7e2f212675fe42142a041319218fa0dd, type: 3}
+  - {fileID: 21300000, guid: bf53db66772b96743bb31e297145c7ca, type: 3}
+  - {fileID: 21300000, guid: d44d1f96d4aa84b4f92ad5270324762e, type: 3}
+  - {fileID: 21300000, guid: 00d963b6c7c32a24fb2058b972de0a90, type: 3}
+  - {fileID: 21300000, guid: 5fb535c642a30134b92e1a133485ac1d, type: 3}
+  - {fileID: 21300000, guid: 619c2bd688f56e742a6a9ca8f2c1ee93, type: 3}
+  - {fileID: 21300000, guid: e148cdd619909a747a67f5736624b917, type: 3}
+  - {fileID: 21300000, guid: 164a36072bdce134e8e2183d91c35854, type: 3}
+  - {fileID: 21300000, guid: 2aed1227aa2e7eb43aca9dd750bc01d5, type: 3}
+  - {fileID: 21300000, guid: f387ab378023fc448a503ea027ebf552, type: 3}
+  - {fileID: 21300000, guid: 3520cb370a148c34eb500872bc6a176c, type: 3}
+  - {fileID: 21300000, guid: cf36eb084cfe45841ab372f264a4623a, type: 3}
+  - {fileID: 21300000, guid: e003db48948cd1b418ccdf3654d28f9b, type: 3}
+  - {fileID: 21300000, guid: 02147578c2ec0fb45aae82696d773c2b, type: 3}
+  - {fileID: 21300000, guid: bfb297884e69c7a41b8403442535403a, type: 3}
+  - {fileID: 21300000, guid: 89cd80b8280871a4c9291f7cb23e4554, type: 3}
+  - {fileID: 21300000, guid: 2c89d9b894b26324f9824927c46e6deb, type: 3}
+  - {fileID: 21300000, guid: 26c2f4c88392ec243b76a68290421dd5, type: 3}
+  - {fileID: 21300000, guid: 421ebc191e03e4f4d9c3a7d37eec5761, type: 3}
+  - {fileID: 21300000, guid: ecac22290a4f7c047abc8390f5c485a9, type: 3}
+  - {fileID: 21300000, guid: 52cc9da99a4e3a843a6d640b3b9dce40, type: 3}
+  - {fileID: 21300000, guid: 8d7fbdb96ad3f5a4e8d1d105622c28ff, type: 3}
+  - {fileID: 21300000, guid: 021d8e1a9a732d943861bde2620526a7, type: 3}
+  - {fileID: 21300000, guid: 4b16d23aa688b2347b80ebe675453405, type: 3}
+  - {fileID: 21300000, guid: f13b354ac0dc4f24d8896dab2929720f, type: 3}
+  - {fileID: 21300000, guid: 65913a7af952ee449bae8b7982f21d0e, type: 3}
+  - {fileID: 21300000, guid: 2c90969a13474a342b4041a38511df84, type: 3}
+  - {fileID: 21300000, guid: 59509bba29dd6ca49a7c3dea0b60d110, type: 3}
+  - {fileID: 21300000, guid: c86619ca95eecf94f93f7cead3aac4e4, type: 3}
+  - {fileID: 21300000, guid: c7dd3efaef481d545a0c63f53d74378e, type: 3}
+  - {fileID: 21300000, guid: be02c31b86adc064fb36c0ed1bc2ba80, type: 3}
+  - {fileID: 21300000, guid: 256f1f2bf6f2c9a42be19ca5827be4c0, type: 3}
+  - {fileID: 21300000, guid: 1580705b168bb454a92d2d2e76746d9e, type: 3}
+  - {fileID: 21300000, guid: dff9637b3f654994795d5d53158ed4fb, type: 3}
+  - {fileID: 21300000, guid: ab8bbaeb667a24144b544650dd039b0d, type: 3}
+  - {fileID: 21300000, guid: 4df8691cd453ed14ab5db7de5bf6c079, type: 3}
+  - {fileID: 21300000, guid: 3c8fa02cba00a104c9266811524966ce, type: 3}
+  - {fileID: 21300000, guid: e7ff426cd3e9b664688443005968d36e, type: 3}
+  - {fileID: 21300000, guid: e582e56c3af1b6a43a04981252df6d98, type: 3}
+  - {fileID: 21300000, guid: 716b238c40601444e92b036c815f661a, type: 3}
+  - {fileID: 21300000, guid: 0784fa3d82771ed43a166c44c29fd4af, type: 3}
+  - {fileID: 21300000, guid: 77dcd07d4f456774e9f6482adb228e9d, type: 3}
+  - {fileID: 21300000, guid: e09f908df4ffd2d4a9c05cd687d148de, type: 3}
+  - {fileID: 21300000, guid: 474931ddd277c9941a1f5408d64dcfd0, type: 3}
+  - {fileID: 21300000, guid: 5885663ecae995b4384e75ab51e3b02d, type: 3}
+  - {fileID: 21300000, guid: 371dc84e2bde7584897d30b0543ce60a, type: 3}
+  - {fileID: 21300000, guid: 16f81f6e758d54c44a7fdcdaa59648ac, type: 3}
+  - {fileID: 21300000, guid: 9f2d8d7e990953e4087c509dc1219b86, type: 3}
+  - {fileID: 21300000, guid: 031fd29e986fec345a08e502c29b601b, type: 3}
+  - {fileID: 21300000, guid: 9ffe05aebdc1c894eb173c3c313e7736, type: 3}
+  - {fileID: 21300000, guid: 712761de54cbbc044a4ea560cf7acaaa, type: 3}
+  - {fileID: 21300000, guid: 64b254dec38e7374185419cd3f051458, type: 3}
+  - {fileID: 21300000, guid: 41b1271f1f087c84bb6e43f6014bc29c, type: 3}
+  - {fileID: 21300000, guid: b9ad41df5cccaf44b815ba07b64beec3, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - bar_renwujiemian_huoyuedu_hui
+  - img_chengjiujiemian_xiaodiban
+  - img_chengjiujiemian_diban_wodechengjiu
+  - img_gonghuijiemian_diban_1
+  - img_xitonggonggao_biaotidiban
+  - img_renwujiemian_jifendi_huang
+  - img_renwu_gaidengjidi
+  - button_gerenzhongxin_dingwei_2
+  - img_renwujiemian_xuxian2
+  - img_gerenzhongxin_xian
+  - img_gerenzhongxin_wuzhanjikuang
+  - img_chongwujiemian_shouji
+  - img_renwujiemian_xingxing_huang
+  - img_renwujiemian_xuxian3
+  - img_gerenzhongxin_biaoqianhong
+  - icon_lingjianbaoxiang
+  - img_gerenzhongxin_biaoqianhuanghui
+  - button_gerenzhongxin_fuzhi_1
+  - back_renwujiemian_renwu_01
+  - btn_renwu_gaiwancheng
+  - img_gerenzhongxin_biaoqianqing
+  - img_gerenzhongxin_duanweishuomingtiaodi
+  - img_gerenzhongxin_xingbie_2
+  - img_renwujiemian_xingxing_hui
+  - img_gerenzhongxin_xingbiexuanzhongdi
+  - button_gerenzhongxin_fuzhi_2
+  - img_gonghuijiemian_diban_dengji
+  - bar_renwujiemian_huoyuedu_huang
+  - icon_lixian
+  - img_gerenzhongxin_bai
+  - btn_renwujiemian_qianwanglingqu
+  - img_chengjiutanchuang_yilingqu
+  - img_renwujiemian_diban_huoyuedu
+  - img_gerenzhongxin_biaoqianju
+  - img_gonghuijiemian_diban_huizhang
+  - back_chengjiujiemian_you
+  - img_chengjiujiemian_fengexian
+  - img_gerenzhongxin_biaoqianfen
+  - img_gerenzhongxin_biaoqianlan
+  - img_renwujiemian_xuxian1
+  - img_chengjiujiemian_diban_chengjiudian
+  - img_gerenzhongxin_xingbiedi
+  - button_gerenzhongxin_genggaiziliao_1
+  - img_renwu_gaixingxinghui
+  - img_gonghuijiemian_biaoti
+  - button_gerenzhongxin_dingwei_1
+  - img_youjianjiemian_kuanzhongdikuang
+  - img_gonghuijiemian_diban_xuanzhong
+  - img_gerenzhongxin_xingbie_1
+  - img_gerenzhongxin_biaoqianhuang
+  - img_chengjiutanchuang_weidacheng
+  - img_renwu_gaixingxingan
+  - img_gerenzhongxin_biaoqianzi
+  - img_gerenzhongxin_xingxingdi
+  - img_shangchengjiemian_diban
+  - img_gerenzhongxin_sheng
+  - img_xitonggonggao_fengexian
+  - img_renwujiemian_xuxian4
+  - icon_zaixian
+  - btn_gonghuijiemian_qiandao
+  - img_jiangliyulan_diban
+  - img_chengjiujiemian_biaoti
+  - img_lingjianbaoxiang_tai
+  - img_gonghuijiemian_diban_chengyuan
+  - img_gerenzhongxin_mingzidi
+  - img_lingjianbaoxiang_biaoti
+  - img_renwu_gaixingxingliang
+  - back_gerenzhongxin_ziliaoxiugai_1
+  - button_gerenzhongxin_genggai_1
+  - img_gerenzhongxin_biaoqianlv
+  - img_gerenzhongxin_dian
+  - img_renwujiemian_jifendi_hui
+  - img_gerenzhongxin_gerenzhongxin
+  - icon_youxizhong
+  - bar_gonghuijiemian_dengji
+  - img_gerenzhongxin_mingcidi
+  m_Tag: New Sprite Atlas
+  m_IsVariant: 0

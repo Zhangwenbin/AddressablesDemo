@@ -58,22 +58,7 @@ public class AddressableTest : MonoBehaviour
 
     public void TestASync()
     {
-        AssetManager.Instance.LoadAssetAsync<TextAsset>(lsKey, (res, op) =>
-        {
-            Debug.Log(res.text);
-            lsText.text = res.text;
-        });
 
-        AssetManager.Instance.LoadAssetAsync<TextAsset>(rsKey, (res, op) =>
-        {
-            Debug.Log(res.text);
-            rsText.text = res.text;
-        });
-        AssetManager.Instance.LoadAssetAsync<TextAsset>(rdKey, (res, op) =>
-        {
-            Debug.Log(res.text);
-            rdText.text = res.text;
-        });
     }
 
     public void DownLoadAll()
