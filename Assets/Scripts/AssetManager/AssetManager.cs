@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MUEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,12 +19,15 @@ public class AssetManager : MonoBehaviour
     public static AssetManager Instance;
     public bool IsInitialize;
     private bool enableHotUpdate = false;
-    public Action<int, float> progressHandler;
 
     public static AsyncOperationHandle defaultHandle;
 
     private Dictionary<AsyncOperationHandle, GameObject> handleDic = new Dictionary<AsyncOperationHandle, GameObject>();
 
+    private Dictionary<string, List<LoadRequest>> cancelRequests = new Dictionary<string, List<LoadRequest>>();
+    private List<LoadRequest> loadQueueRequests = new List<LoadRequest>();
+    private int maxLoadingCount = 10;
+    private int currentLoadingCount = 0;
     private void Awake()
     {
         Instance = this;
@@ -31,7 +35,20 @@ public class AssetManager : MonoBehaviour
     }
     public void Initialize()
     {
-        Addressables.InitializeAsync().Completed += InitialCompleted;
+        StartCoroutine(InitializeAsync());
+    }
+
+    IEnumerator InitializeAsync()
+    {
+        var inithandle = Addressables.InitializeAsync();
+        inithandle.Completed += InitialCompleted;
+        //LoadingScreen.SetTipsStatic(1);
+        while (!inithandle.IsDone)
+        {
+            //LoadingScreen.SetProgress(inithandle.PercentComplete);
+            yield return null;
+        }
+        yield return null;
     }
 
     private void InitialCompleted(AsyncOperationHandle<IResourceLocator> obj)
@@ -105,17 +122,14 @@ public class AssetManager : MonoBehaviour
                 dic.Add(item, handle.Result);
             }
             Addressables.Release(handle);
-            //if (progressHandler != null)
-            //{
-            //    index++;
-            //    progressHandler(0, index/count);
-            //}
+
 
         }
         updateSize = tempSize;
         float currentDownloadSize = 0;
         float totalDownLoadSize = 0;
         float downloadPercent = 0;
+        //LoadingScreen.SetTipsStatic(3);
         if (updateSize > 0)
         {
             foreach (var item in dic)
@@ -126,19 +140,13 @@ public class AssetManager : MonoBehaviour
                 {
                     currentDownloadSize = downloadHandle.PercentComplete * item.Value;
                     downloadPercent = (totalDownLoadSize + currentDownloadSize) / updateSize;
-                    if (progressHandler != null)
-                    {
-                        progressHandler(0, downloadPercent);
-                    }
+                    //LoadingScreen.SetProgress(downloadPercent);
                     yield return null;
                 }
                 totalDownLoadSize += currentDownloadSize;
                 Addressables.Release(downloadHandle);
             }
-            if (progressHandler != null)
-            {
-                progressHandler(0, 1);
-            }
+            //LoadingScreen.SetProgress(1);
             IsInitialize = true;
         }
         else
@@ -147,6 +155,83 @@ public class AssetManager : MonoBehaviour
         }
 
 
+    }
+
+    public void PreLoadAssets(Action callback,bool showProgress=false)
+    {
+        LoadAssetAsync<TextAsset>("preload.bytes",(preloadkey,res)=> {
+            if (res==null)
+            {
+                if (callback!=null)
+                {
+                    callback();
+                }
+                return;
+            }
+            maxLoadingCount = 50;
+           var preloadasset = res as TextAsset;
+            string filelist = preloadasset.text;
+            string[] files = filelist.Split('\n');
+            int totalCount = files.Length;
+            if (showProgress)
+            {
+                //LoadingScreen.SetTipsStatic(6);
+            }
+
+            for (int i = 0; i < files.Length; i++)
+            {
+                string file = files[i].Trim();
+                if (string.IsNullOrEmpty(file))
+                {
+                    --totalCount;
+                    continue;
+                }
+                if (file.EndsWith(".bytes"))
+                {
+                    LoadAssetAsyncQueue(file, (key, asset) => {
+                        --totalCount;
+                        if (showProgress)
+                        {
+                            //LoadingScreen.SetProgress(1 - totalCount * 1.0f / files.Length);
+                        }
+                       
+                        if (totalCount == 0)
+                        {
+                            if (callback != null)
+                            {
+                                callback();
+                            }
+                            maxLoadingCount = 10;
+                        }
+                    });
+                }
+                else if (file.EndsWith(".prefab"))
+                {
+                    LoadAssetAsyncQueue(file, (key, resObj) => {
+                        --totalCount;
+                        if (showProgress)
+                        {
+                            //LoadingScreen.SetProgress(1 - totalCount * 1.0f / files.Length);
+                        }
+                        var asset = resObj as GameObject;
+                        if (asset is GameObject)
+                        {
+                            GameObjectPool.RecycleGameObject(key, asset);
+                            if (totalCount == 0)
+                            {
+                                if (callback != null)
+                                {
+                                    callback();
+                                }
+                                maxLoadingCount = 10;
+                            }
+                        }
+
+                    });
+                }
+                              
+            }
+        });
     }
 
     /// <summary>
@@ -175,60 +260,172 @@ public class AssetManager : MonoBehaviour
     /// <param name="callback"></param>
     public T LoadAssetSync<T>(string key) where T : UnityEngine.Object
     {
-        //if (staticPool.ContainsKey(key))
-        //{
-        //    return staticPool[key] as T;
-        //}
-        //var item = GameObjectPool.GetGameObject(key);
-        //if (item != null)
-        //{
-        //    item.SetActive(true);
-        //    return item as T;
-        //}
-        //var refObj = RefPool<T>.GetObject(key);
-        //if (refObj != null)
-        //{
-        //    return refObj;
-        //}
-        var op = Addressables.LoadAssetAsync<T>(key);
-        var res = op.WaitForCompletion();
 
-        return res;
-    }
+        //.bytes 文本资源 直接卸载,不操作
+        if (key.EndsWith(".bytes"))
+        {
+            var txt = Addressables.LoadAssetAsync<T>(key);
+            var bytes = txt.WaitForCompletion();
+            ReleaseHandle(txt, true);
+            return bytes;
+        }
 
-
-    public AsyncOperationHandle LoadAssetAsync<T>(string key, Action<string, T> callback) where T : UnityEngine.Object
-    {
+        T res;
         if (staticPool.ContainsKey(key))
         {
-            if (callback != null)
-                callback(key, staticPool[key] as T);
-            return defaultHandle;
+            return staticPool[key] as T;
         }
         var item = GameObjectPool.GetGameObject(key);
         if (item != null)
         {
-            item.SetActive(true);
-            if (callback != null)
-                callback(key, item as T);
-            return defaultHandle;
+             res = item as T;
+            if (res != null)
+            {
+                item.SetActive(true);
+                return res;
+            }
+            else
+            {
+                GameObjectPool.RecycleGameObject(key, item);
+            }
+
         }
 
+        var refItem = RefPool.GetObject(key);
+        if (refItem != null)
+        {
+             res = refItem as T;
+            if (res != null)
+            {
+                return res;
+            }
+            else
+            {
+                RefPool.ReleaseObject(key);
+            }
+
+        }
+        var op = Addressables.LoadAssetAsync<T>(key);
+          op.WaitForCompletion();
+        if (op.Status == AsyncOperationStatus.Succeeded)
+        {
+            GameObject go = op.Result as GameObject;
+            if (go)
+            {
+                if (PrefabUnInstantiateRule(go))
+                {
+                   return go as T;
+                }
+                else
+                {
+                    handleDic[op] = UnityEngine.GameObject.Instantiate(go);
+                    return handleDic[op] as T;
+                }
+
+            }
+            else
+            {
+                RefPool.OnLoadObject(key, op);
+                return op.Result;
+            }
+        }
+        else
+        {
+            Debug.LogError("加载资源失败 " + key);
+            return null;
+        }
+    }
+
+    private bool PrefabUnInstantiateRule(GameObject go)
+    {
+        return true;
+    }
+
+
+    public void LoadAssetAsyncQueue(string key, Action<string, UnityEngine.Object> callback)
+    {
+        loadQueueRequests.Add(new LoadRequest(key, callback));
+    }
+
+    private void UpdateLoadQueue()
+    {
+        var count = loadQueueRequests.Count;
+        if (count==0)
+        {
+            return;
+        }
+        while (currentLoadingCount<maxLoadingCount&&count>0)
+        {
+            var req = loadQueueRequests[0];
+            LoadAssetAsync<UnityEngine.Object>(req.key, req.callback);
+            loadQueueRequests.RemoveAt(0);
+            count = loadQueueRequests.Count;
+        }
+    }
+
+
+    public void LoadAssetAsync<T>(string key, Action<string, UnityEngine.Object> callback) where T : UnityEngine.Object
+    {
+        if (RemoveCancel(key,callback))
+        {
+            return;
+        }
+        if (staticPool.ContainsKey(key))
+        {
+            if (callback != null)
+                NextFrameCallBack(callback, key, staticPool[key] as T);
+            return ;
+        }
+        var item = GameObjectPool.GetGameObject(key);
+        if (item != null)
+        {
+            var res = item as T;
+            if (res!=null)
+            {
+                item.SetActive(true);
+                if (callback != null)
+                    NextFrameCallBack(callback, key, res);
+                return;
+            }
+            else
+            {
+                GameObjectPool.RecycleGameObject(key,item);
+            }
+
+        }
+
+        var refItem = RefPool.GetObject(key);
+        if (refItem!=null)
+        {
+            var res = refItem as T;
+            if (res !=null)
+            {
+                if (callback != null)
+                    NextFrameCallBack(callback, key, res);
+                return;
+            }
+            else
+            {
+                RefPool.ReleaseObject(key);
+            }
+
+        }
+        currentLoadingCount++;
         var op = Addressables.LoadAssetAsync<T>(key);
         op.Completed += (res) =>
         {
-            if (callback != null)
+            if (callback != null&&!RemoveCancel(key,callback ))
             {
                 if (res.Status == AsyncOperationStatus.Succeeded)
                 {
                     GameObject go = res.Result as GameObject;
                     if (go)
                     {
-                        //if (EngineDelegate.PrefabUnInstantiateRule != null && EngineDelegate.PrefabUnInstantiateRule(go))
-                        //{
-                        //    callback(key, go as T);
-                        //}
-                        //else
+                        if (PrefabUnInstantiateRule(go))
+                        {
+                            callback(key, go as T);
+                        }
+                        else
                         {
                             handleDic[op] = UnityEngine.GameObject.Instantiate(go);
                             callback(key, handleDic[op] as T);
@@ -237,6 +434,7 @@ public class AssetManager : MonoBehaviour
                     }
                     else
                     {
+                        RefPool.OnLoadObject(key, op);
                         callback(key, res.Result);
                     }
                 }
@@ -247,9 +445,21 @@ public class AssetManager : MonoBehaviour
                 }
 
             }
+            currentLoadingCount--;
         };
 
-        return op;
+        return ;
+    }
+    private void NextFrameCallBack<T>(Action<string, T> callback,string key,T result)
+    {
+        StartCoroutine(NextFrameCallBackIe(callback,key,result));
+    }
+
+    private IEnumerator NextFrameCallBackIe<T>(Action<string, T> callback, string key, T result)
+    {
+        //callback(key, result);
+        yield return 1;
+        callback(key, result);
     }
 
 
@@ -268,6 +478,10 @@ public class AssetManager : MonoBehaviour
 
     public void ReleaseHandle(AsyncOperationHandle handle,bool forece=false)
     {
+        if (handle.Equals(defaultHandle))
+        {
+            return;
+        }
         if (forece)
         {
             Addressables.Release(handle);
@@ -289,6 +503,12 @@ public class AssetManager : MonoBehaviour
         Addressables.Release(handle);
     }
 
+
+    public void ReleaseRefAsset(string key)
+    {
+        RefPool.ReleaseObject(key);
+    }
+
     public void UpdateHandles()
     {
         foreach (var item in handleDic)
@@ -300,5 +520,63 @@ public class AssetManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void ReleaseCallBack(string key, Action<string, UnityEngine.Object> callback)
+    {
+        for (int i = 0; i < loadQueueRequests.Count; i++)
+        {
+            var req = loadQueueRequests[i];
+            if (req.callback.Equals(callback))
+            {
+                loadQueueRequests.RemoveAt(i);
+                return;
+            }
+        }
+        if (cancelRequests.TryGetValue(key,out List<LoadRequest> list))
+        {
+            list.Add(new LoadRequest(key,callback));
+        }
+        else
+        {
+            list = new List<LoadRequest>();
+            list.Add(new LoadRequest(key, callback ));
+            cancelRequests.Add(key, list);
+        }
+    }
+
+    private bool RemoveCancel(string key, Action<string, UnityEngine.Object> callback)
+    {
+        if (cancelRequests.TryGetValue(key, out List<LoadRequest> list))
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                var req = list[i];
+                if (req.callback.Equals(callback))
+                {
+                    list.RemoveAt(i);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void Update()
+    {
+        UpdateHandles();
+        UpdateLoadQueue();
+    }
+
+}
+
+public class LoadRequest
+{
+    public string key;
+    public Action<string, UnityEngine.Object> callback;
+    public LoadRequest(string key, Action<string, UnityEngine.Object> callback){
+        this.key = key;
+        this.callback = callback;
+
     }
 }
