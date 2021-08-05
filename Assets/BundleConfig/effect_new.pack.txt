@@ -1,0 +1,38 @@
+{
+   "$types" : {
+      "EG.MUPackV5, Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" : "1",
+      "EG.MUPackBundleV5, Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" : "2"
+   },
+   "$type" : "1",
+   "SrcDir" : "Assets/Res/FX",
+   "PackItems" : [
+      {
+         "$type" : "2",
+         "BundleName" : "effect_new",
+         "SubFolder" : "Prefabs",
+         "SearchFilters" : [
+            "*.prefab"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "effect_texture_new",
+         "SubFolder" : "Textures",
+         "SearchFilters" : [
+            "*.png",
+            "*.jpg",
+            "*.tga"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      }
+   ]
+}

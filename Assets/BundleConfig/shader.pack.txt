@@ -1,0 +1,23 @@
+{
+   "$types" : {
+      "EG.MUPackV5, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" : "1",
+      "EG.MUPackBundleV5, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" : "2"
+   },
+   "$type" : "1",
+   "SrcDir" : "Assets",
+   "PackItems" : [
+      {
+         "$type" : "2",
+         "BundleName" : "shadervariants",
+         "SubFolder" : "Res/shaderlib",
+         "SearchFilters" : [
+            "*.shadervariants"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : false,
+         "CollectDepends" : false,
+         "PackType" : "ShaderLib"
+      }
+   ]
+}

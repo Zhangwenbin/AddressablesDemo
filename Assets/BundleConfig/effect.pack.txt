@@ -1,0 +1,64 @@
+{
+   "$types" : {
+      "EG.MUPackV5, EG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" : "1",
+      "EG.MUPackBundleV5, EG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" : "2"
+   },
+   "$type" : "1",
+   "SrcDir" : "Assets/Res/Effect",
+   "PackItems" : [
+      {
+         "$type" : "2",
+         "BundleName" : "effect",
+         "SubFolder" : "character_prefab",
+         "SearchFilters" : [
+            "*.prefab"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "effect_texture",
+         "SubFolder" : "x_texture",
+         "SearchFilters" : [
+            "*.png",
+            "*.jpg",
+            "*.tga"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "effect_ui",
+         "SubFolder" : "ui_prefab",
+         "SearchFilters" : [
+            "*.prefab"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : false,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "effect_scene",
+         "SubFolder" : "scene_prefab",
+         "SearchFilters" : [
+            "*.prefab"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      }
+   ]
+}

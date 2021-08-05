@@ -1,0 +1,23 @@
+{
+   "$types" : {
+      "EG.MUPackV5, EG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" : "1",
+      "EG.MUPackBundleV5, EG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" : "2"
+   },
+   "$type" : "1",
+   "SrcDir" : "Assets/Res/Scene",
+   "PackItems" : [
+      {
+         "$type" : "2",
+         "BundleName" : "",
+         "SubFolder" : "Export",
+         "SearchFilters" : [
+            "*.unity"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Scene"
+      }
+   ]
+}

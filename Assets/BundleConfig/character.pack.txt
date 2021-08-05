@@ -1,0 +1,66 @@
+{
+   "$types" : {
+      "EG.MUPackV5, EG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" : "1",
+      "EG.MUPackBundleV5, EG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" : "2"
+   },
+   "$type" : "1",
+   "SrcDir" : "Assets/Res/Character/",
+   "PackItems" : [
+      {
+         "$type" : "2",
+         "BundleName" : "character",
+         "SubFolder" : "",
+         "SearchFilters" : [
+            "*.prefab"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "character_tex",
+         "SubFolder" : "player",
+         "SearchFilters" : [
+            "*.png",
+            "*.tga",
+            "*.jpg"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "character_anim",
+         "SubFolder" : "",
+         "SearchFilters" : [
+            "*.anim"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "drop_tex",
+         "SubFolder" : "drop",
+         "SearchFilters" : [
+            "*.png",
+            "*.tga",
+            "*.jpg"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      }
+   ]
+}

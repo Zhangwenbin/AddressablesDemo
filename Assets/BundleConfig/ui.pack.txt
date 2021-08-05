@@ -1,0 +1,123 @@
+{
+   "$types" : {
+      "EG.MUPackV5, Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" : "1",
+      "EG.MUPackBundleV5, Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" : "2"
+   },
+   "$type" : "1",
+   "SrcDir" : "Assets/Res/Gui",
+   "PackItems" : [
+      {
+         "$type" : "2",
+         "BundleName" : "ui_atlas",
+         "SubFolder" : "Share/Texture",
+         "SearchFilters" : [
+            "*.png",
+            "*.jpg"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per Atlas"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "ui_font",
+         "SubFolder" : "Font",
+         "SearchFilters" : [
+            "*.ttf",
+            "*.fnt",
+            "*.fontsettings",
+            "*.OTF"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : false,
+         "CollectDepends" : false,
+         "PackType" : "OneBunlde"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "ui",
+         "SubFolder" : "Prefab",
+         "SearchFilters" : [
+            "*.prefab"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : false,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "ui_texture",
+         "SubFolder" : "Share/BigTexture",
+         "SearchFilters" : [
+            "*.png",
+            "*.jpg"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "ui_img_font",
+         "SubFolder" : "Font",
+         "SearchFilters" : [
+            "*.png",
+            "*.jpg",
+            "*.prefab"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "OneBunlde"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "Emoji",
+         "SubFolder" : "Emoji",
+         "SearchFilters" : [
+            "*.txt",
+            "*.prefab"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "OneBunlde"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "ui_AlphaCombine",
+         "SubFolder" : "AlphaCombine",
+         "SearchFilters" : [
+            "*.png",
+            "*.jpg"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      },
+      {
+         "$type" : "2",
+         "BundleName" : "scene_lutify",
+         "SubFolder" : "../Lutify/Luts",
+         "SearchFilters" : [
+            "*.png"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "Per File"
+      }
+   ]
+}

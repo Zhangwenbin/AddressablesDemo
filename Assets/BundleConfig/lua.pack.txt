@@ -1,0 +1,23 @@
+{
+   "$types" : {
+      "EG.MUPackV5, Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" : "1",
+      "EG.MUPackBundleV5, Assembly-CSharp-Editor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" : "2"
+   },
+   "$type" : "1",
+   "SrcDir" : "Assets/Lua/out",
+   "PackItems" : [
+      {
+         "$type" : "2",
+         "BundleName" : "lua",
+         "SubFolder" : "",
+         "SearchFilters" : [
+            "*.txt"
+         ],
+         "NecessaryFilters" : "",
+         "ExcludeFilters" : "",
+         "SearchSubDir" : true,
+         "CollectDepends" : false,
+         "PackType" : "OneBunlde"
+      }
+   ]
+}
