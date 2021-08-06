@@ -113,8 +113,13 @@ namespace EG
               };
         }
 
-        public virtual byte[] GetBytesSync(string name)
+        public virtual byte[] GetLuaBytes(string name)
         {
+           var cache= resMgr.GetLuaBytes(name);
+           if (cache!=null)
+           {
+               return cache;
+           }
            var op= resMgr.LoadAssetAsync(name);
            while (!op.IsDone)
            {

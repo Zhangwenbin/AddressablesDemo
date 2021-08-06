@@ -80,6 +80,13 @@ namespace EG
             get;
             set;
         }
+
+        [DisplayName("打包Label")]
+        public string PackLabel
+        {
+            get;
+            set;
+        }
         public MUPackBundleV5()
         {
         }

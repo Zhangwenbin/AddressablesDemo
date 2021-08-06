@@ -10,32 +10,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: lua.pack
+  m_Name: lua
   m_EditorClassIdentifier: 
-  m_GroupName: lua.pack
+  m_GroupName: lua
   m_Data:
     m_SerializedData: []
-  m_GUID: d1defa082f65ff442b9320b40506d67b
+  m_GUID: 1d0d0eb1fa57f3a4e934ebfb7cedb763
   m_SerializeEntries:
   - m_GUID: 293bbc2cc4ca7c44c8973623a7333c7a
     m_Address: ld.txt
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - .txt
+    - lua
   - m_GUID: 3e7e437c64e8a7b419918b6ed8c0a54b
     m_Address: ls.txt
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - .txt
+    - lua
   - m_GUID: 9418a8db02aba4547a93b0453adca7b2
     m_Address: rd.txt
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - .txt
+    - lua
   - m_GUID: 70e8808605410e047a78bc140e1f94ec
     m_Address: rs.txt
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - .txt
+    - lua
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f46cd564f01a77b4e914b00bc92a1e62, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: eb3ec6ef31a9b55418d9fcef8d05b563, type: 2}
-    - {fileID: 11400000, guid: 7dc038cc1cf6f7440ae9d6f92447212c, type: 2}
+    - {fileID: 11400000, guid: f5500a4c75f14634794a56075ccd37be, type: 2}
+    - {fileID: 11400000, guid: e8545a6f0045aec4b94ffbe99f6aff51, type: 2}

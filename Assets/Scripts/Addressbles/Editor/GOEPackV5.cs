@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
-
+using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 //#define UNITY_EDITOR 1
 #if UNITY_EDITOR
 using UnityEditor;
@@ -58,13 +58,13 @@ namespace EG
             set { mPackItems = value; }
         }
 
-        public bool ConfigureAssetImporter(bool silent, out string error, out List<AssetBundleBuild> builds)
+         public bool ConfigureAssetImporter(bool silent, out string error, out List<AssetBundleBuild> builds)
         {
             Dictionary<string, List<string>> fileMapping = new Dictionary<string, List<string>>();
             builds = null;
             foreach (var i in mPackItems)
             {
-
+                fileMapping.Clear();
                 //预处理结束后，获取文件列表
                 List<string> files = i.BuildSrcFileList(SrcDir);
 
@@ -89,9 +89,12 @@ namespace EG
                                                             "确定");
                             return false;
                         }
-
+                        if (ti.textureType != TextureImporterType.Sprite)
+                        {
+ 
+                        }
                         bundleName = i.BundleName + "_" + ti.spritePackingTag;
-
+                        
                     }
                     else if (i.PackType == "Per File")
                     {
@@ -107,19 +110,14 @@ namespace EG
                             string name = Path.GetFileName(file);
                             generatedPath = Path.Combine(sceneExport, name);
                         }
-
-
-
-                        //generatedPath = ProcessScene(file, ref scene);
-
+                        
                         isGenerated = true;
                         if (!string.IsNullOrEmpty(i.BundleName))
                             bundleName = i.BundleName + "_" + Path.GetFileNameWithoutExtension(file);
                         else
                             bundleName = Path.GetFileNameWithoutExtension(file);
                     }
-                    else if (i.PackType == "ShaderLib")
-                    {
+                    else if (i.PackType == "ShaderLib") {
                         if (!string.IsNullOrEmpty(i.BundleName))
                             bundleName = i.BundleName + "_" + Path.GetFileNameWithoutExtension(file);
                         else
@@ -149,11 +147,13 @@ namespace EG
                     }
                     else
                         bundleName = i.BundleName;
-                    bundleName = bundleName.Replace(" ", "_").ToLower() + ".bundle";
+                    bundleName = bundleName.Replace(" ","_").ToLower() + ".bundle";
                     List<string> nameSet;
                     if (!fileMapping.TryGetValue(bundleName, out nameSet))
                     {
                         nameSet = new List<string>();
+                        //第一个是packlabel,不是资源
+                        nameSet.Add(i.PackLabel);
                         fileMapping[bundleName] = nameSet;
                     }
 
@@ -163,34 +163,54 @@ namespace EG
                         nameSet.Add(importer.assetPath);
 
                     //目前对于打包shader的时候添加额外的资源到bundle中
-                    if (ExtraAssetsInBundle != null)
-                    {
-                        for (int j = 0; j < ExtraAssetsInBundle.Length; j++)
-                        {
-                            if (!nameSet.Contains(ExtraAssetsInBundle[j]))
-                            {
+                    if (ExtraAssetsInBundle != null) {
+                        for (int j = 0; j < ExtraAssetsInBundle.Length; j++) {
+                            if (!nameSet.Contains(ExtraAssetsInBundle[j])) {
                                 nameSet.Add(ExtraAssetsInBundle[j]);
                             }
                         }
                     }
 
                 }
+                
+                int idx = 0;
 
+                builds = new List<AssetBundleBuild>();
+                //清理不应该被打包进去的文件
+                foreach (var item in fileMapping)
+                {
+                    AssetBundleBuild build = new AssetBundleBuild();
+                    build.assetBundleName = item.Key;
+                    //第一个用来存label
+                    if (!string.IsNullOrEmpty(item.Value[0]))
+                    {
+                        build.assetBundleVariant = item.Value[0];
+                    }
+
+                    item.Value.RemoveAt(0);
+                    build.assetNames = item.Value.ToArray();
+                    builds.Add(build);
+                    idx++;
+                }
+
+                for (int j = 0; j < builds.Count; j++)
+                {
+                    if (builds[j].assetNames.Length == 1)
+                    {
+                        var bundleName = i.BundleName;
+                        if (string.IsNullOrEmpty(i.BundleName))
+                            bundleName = "unknowGroup";
+                        AddressbleTool.CreateGroupAndEntry(bundleName, builds[j],BundledAssetGroupSchema.BundlePackingMode.PackSeparately);
+                    }
+                    else
+                    {
+                        AddressbleTool.CreateGroupAndEntry(builds[j].assetBundleName, builds[j], BundledAssetGroupSchema.BundlePackingMode.PackTogether);
+                    }
+                }
+                                
             }
 
-            int idx = 0;
-
-            builds = new List<AssetBundleBuild>();
-            //清理不应该被打包进去的文件
-            foreach (var i in fileMapping)
-            {
-                AssetBundleBuild build = new AssetBundleBuild();
-                build.assetBundleName = i.Key;
-
-                build.assetNames = i.Value.ToArray();
-                builds.Add(build);
-                idx++;
-            }
+           
             error = null;
             return true;
         }

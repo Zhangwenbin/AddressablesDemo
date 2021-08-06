@@ -36,8 +36,8 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 75c88e7ef0680f541b114682714587ba, type: 2}
   - {fileID: 11400000, guid: 0c9f97afdec9a7240b2b2389996669f6, type: 2}
-  - {fileID: 11400000, guid: f8df95f99770ea140805ec17b7018b9d, type: 2}
-  - {fileID: 11400000, guid: be98f807bbd8bd241b0e1cec719bff7d, type: 2}
+  - {fileID: 11400000, guid: 406642cab54a8a545b4c73bdfd6aa87f, type: 2}
+  - {fileID: 11400000, guid: 59b7fce72d427d64bb549a105ea8c6a9, type: 2}
   - {fileID: 11400000, guid: 50ef905c9f27dbd4cabe4c56af85a772, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
@@ -80,6 +80,10 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - .txt
+    - lua
+    - .prefab
+    - ui
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 66828fa82a78cfb49adefeb0f2582c56, type: 2}

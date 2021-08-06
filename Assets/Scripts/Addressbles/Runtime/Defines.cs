@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace EG
-{
+
     public enum LoadPriority
     {
         Default = 0,            //默认加载 异步 队列
@@ -15,6 +14,4 @@ namespace EG
         LongTime = 1,
         ReloadDestroy = 2,
         Persistent = 3,
-    }
-
-}
+    }   
